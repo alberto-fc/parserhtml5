@@ -53,7 +53,15 @@ color: #bbb;
     		outputText.push(rows[i]);
     	}*/
     	
-    	var res = str.replace(/http:\/\/p/g, "http://" + user + ":" + pass + "@p");
+    	var domainIndex = str.indexOf('http://') + 7;
+    	console.log(domainIndex);
+    	var domainStr = str.substring(domainIndex, (domainIndex) + 10);
+    	console.log(domainStr);
+    	var strToReplace = 'http://' + domainStr + ':9981'
+    	console.log(strToReplace);
+    	var regReplace = new RegExp(strToReplace, "g");
+
+    	var res = str.replace(regReplace, "https://" + user + ":" + pass + "@" + domainStr);
     	console.log(res);
     	console.log("TERMINE");
     	console.log(user);
